@@ -1,17 +1,18 @@
 <template>
     <div class="carasoul-screen">
         <div class="carasoul">
-            <div class="carasoul-card">
-                <div class="carasoul-word">Grapefruit</div>
+            <div v-for="word in words" class="carasoul-card">
+                <div class="carasoul-word">{{ word }}</div>
             </div>
-            <div class="carasoul-card"></div>
-            <div class="carasoul-card"></div>
-            <div class="carasoul-card"></div>
-            <div class="carasoul-card"></div>
-            <div class="carasoul-card"></div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: ["words"]
+}
+</script>
 
 <style lang="css" scoped>
 .carasoul {
