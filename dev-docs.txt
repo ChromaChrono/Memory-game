@@ -1,0 +1,18 @@
+Memory Game
+
+The game will consist of a carasoul of boxes each containing a random noun.
+There will be a timer that tells the user when the words in the boxes will be
+replaced with empty input fields.
+
+The user then needs to fill out the input fields, not in order, with the nouns they
+memorized previously.
+
+
+ESSENTIALS:
+A start screen with game options, including time and how many words
+Timer that can be adjusted before the game starts
+A carasoul of boxes
+A game ended screen showing the total score
+
+WORD COUNTING LOGIC:
+An object of random words which is read through with a for in loop
