@@ -27,7 +27,6 @@ data() {
 methods: {
     startGame() {
         this.$emit("values", {timeMS: this.timeMS, wordCount: this.wordCount})
-        console.log(this.timeMS)
     }
 }
 }
