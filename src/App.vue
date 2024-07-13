@@ -1,20 +1,28 @@
 <script setup>
 import startScreen from "./components/start-screen.vue"
 import carasoul from "./components/carasoul.vue";
+import fetchWords from "./assets/js/fetchWords";
 </script>
 
 <template>
-<h1>Jawayriya is the best</h1>
 <!-- <startScreen @values="handleStart($event)"></startScreen> -->
-<carasoul></carasoul>
+<carasoul :words="words"></carasoul>
 </template>
 
 <script>
 export default {
+    data(){
+        return {
+            words: []
+      }
+    },
     methods: {
         handleStart(e) {
             console.log(e)
         }
+    },
+    created() {
+        this.words = fetchWords(10)
     }
 }
 </script>
