@@ -9,7 +9,12 @@
             <div class="setting-field">
                 <label for="wordCount">Words:</label>
                 <br />
-                <input type="number" id="wordCount" value="10" />
+                <input
+                    type="number"
+                    id="wordCount"
+                    value="10"
+                    v-model="wordCount"
+                />
             </div>
             <button @click="startGame">Start</button>
         </div>

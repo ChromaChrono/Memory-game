@@ -36,8 +36,8 @@ export default {
         };
     },
     methods: {
-        handleStart() {
-            const words = fetchWords(10);
+        async handleStart(e) {
+            const words = await fetchWords(e.wordCount);
             this.arrayToWordTable(words);
             this.gameState = "started";
         },
