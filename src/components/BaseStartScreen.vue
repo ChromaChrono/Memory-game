@@ -2,7 +2,7 @@
     <div class="start-screen">
         <div class="setting-fields">
             <div class="setting-field">
-                <label for="time">Time:</label>
+                <label for="time">Time (seconds):</label>
                 <br />
                 <input type="number" id="time" value="60" />
             </div>
@@ -55,6 +55,12 @@ export default {
 
 .setting-field {
     margin-bottom: 0.75rem;
+    color: black;
+}
+
+.setting-field > input {
+    height: 2.5rem;
+    font-size: 1rem;
 }
 
 button {

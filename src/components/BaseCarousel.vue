@@ -85,6 +85,7 @@ export default {
     place-items: center;
     flex-shrink: 0;
 }
+
 .carousel-word {
     font-size: 2rem;
     color: black;
@@ -110,6 +111,37 @@ export default {
 .btn-continue {
     position: absolute;
     top: 22rem;
+    height: 2.5rem;
+    width: 8rem;
     /* left: 10vw; */
+}
+
+@media screen and (max-width: 600px) {
+    .carousel-screen {
+        height: fit-content;
+    }
+    .carousel-card {
+        height: 8rem;
+    }
+    .carousel {
+        flex-direction: column;
+        overflow: scroll;
+        margin-bottom: 10rem;
+    }
+    .carousel-card {
+        margin: 0;
+        width: 100%;
+    }
+    .carousel-card:not(:first-child) {
+        margin: 0;
+        margin-top: 2rem;
+    }
+    .btn-continue {
+        position: absolute;
+        top: initial;
+        bottom: 5rem;
+        left: 50%;
+        transform: translate(-50%);
+    }
 }
 </style>

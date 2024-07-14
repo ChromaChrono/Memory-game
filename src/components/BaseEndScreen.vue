@@ -83,5 +83,20 @@ export default {
 
 .btn-replay {
     margin-top: 5rem;
+    height: 2.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .flex {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-between;
+    }
+
+    .flex > div {
+        margin-top: 3rem;
+    }
 }
 </style>
