@@ -1,17 +1,30 @@
 <template>
     <div class="carousel-screen">
         <div class="carousels">
-            <div v-if="memorizing===true" class="carousel">
-                <div v-for="(word, key) in words" class="carousel-card">
+            <div v-if="memorizing === true" class="carousel">
+                <div
+                    v-for="(word, key) in words"
+                    :key="word.id"
+                    class="carousel-card"
+                >
                     <div class="carousel-word" :id="word.id">{{ key }}</div>
                 </div>
             </div>
-            <div v-if="memorizing===false" class="carousel" ref="guessedWords">
-                <div v-for="word in words" class="carousel-card">
-                    <div class="carousel-word underline" contenteditable="true"></div>
+            <div
+                v-if="memorizing === false"
+                class="carousel"
+                ref="guessedWords"
+            >
+                <div v-for="(word, i) in words" :key="i" class="carousel-card">
+                    <div
+                        class="carousel-word underline"
+                        contenteditable="true"
+                    ></div>
                 </div>
             </div>
-            <button class="btn-continue" @click="handleContinue">Continue</button>
+            <button class="btn-continue" @click="handleContinue">
+                Continue
+            </button>
         </div>
     </div>
 </template>
@@ -22,29 +35,32 @@ export default {
     data() {
         return {
             memorizing: true,
-            guessedWords: []
-        }
+            guessedWords: [],
+        };
     },
     methods: {
         readGuessedWords() {
-            const carousel = this.$refs.guessedWords
-            for (let i = 0; i< carousel.children.length; i++) {
-                this.guessedWords.push(carousel.children[i].querySelector(".carousel-word").textContent)
+            const carousel = this.$refs.guessedWords;
+            for (let i = 0; i < carousel.children.length; i++) {
+                this.guessedWords.push(
+                    carousel.children[i].querySelector(".carousel-word")
+                        .textContent,
+                );
             }
         },
         emitGuessedWords() {
-            this.$emit("guessedWords", this.guessedWords)
+            this.$emit("guessedWords", this.guessedWords);
         },
         handleContinue() {
             if (this.memorizing) {
-                this.memorizing = false
+                this.memorizing = false;
             } else {
-                this.readGuessedWords()
-                this.emitGuessedWords()
+                this.readGuessedWords();
+                this.emitGuessedWords();
             }
-        }
-    }
-}
+        },
+    },
+};
 </script>
 
 <style lang="css" scoped>
@@ -54,12 +70,10 @@ export default {
     top: 50%;
     /* width: 100%; */
     overflow-x: scroll;
-    
 }
 .carousels {
     width: 100vw;
     position: relative;
-
 }
 .carousel-card {
     background: white;
@@ -88,7 +102,7 @@ export default {
     width: 100vw;
     display: grid;
     place-items: center;
-    overflow:hidden;
+    overflow: hidden;
 }
 .underline {
     border-bottom: 1px solid black;
