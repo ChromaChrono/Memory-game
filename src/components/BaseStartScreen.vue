@@ -7,7 +7,12 @@
                 <input type="number" id="time" value="60" />
             </div>
             <div class="setting-field">
-                <label for="wordCount">Words:</label>
+                <label for="wordCount"
+                    >Words:
+                    <span class="danger">{{
+                        this.wordCount > 100 ? "max 100" : ""
+                    }}</span></label
+                >
                 <br />
                 <input
                     type="number"
@@ -16,7 +21,9 @@
                     v-model="wordCount"
                 />
             </div>
-            <button @click="startGame">Start</button>
+            <button @click="startGame" :disabled="loadingGame">
+                {{ loadingGame ? "loading" : "start" }}
+            </button>
         </div>
     </div>
 </template>
@@ -27,10 +34,15 @@ export default {
         return {
             timeMS: 60000,
             wordCount: 10,
+            loadingGame: false,
         };
     },
     methods: {
         startGame() {
+            if (this.wordCount > 100) {
+                this.wordCount = 100;
+            }
+            this.loadingGame = true;
             this.$emit("values", {
                 timeMS: this.timeMS,
                 wordCount: this.wordCount,
@@ -66,6 +78,11 @@ export default {
 .setting-field > input {
     height: 2.5rem;
     font-size: 1rem;
+}
+.danger {
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 button {
