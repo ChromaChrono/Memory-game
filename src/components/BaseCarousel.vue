@@ -145,7 +145,6 @@ export default {
         bottom: 5rem;
         left: 50%;
         transform: translate(-50%);
-        
     }
 }
 </style>

@@ -13,7 +13,7 @@
     --color-text-background: var(--c-dark-700);
     --color-text-foreground: var(--c-white);
     --color-danger: var(--c-red-900);
-    --color-success: var(var(--c-green-900));
+    --color-success: var(--c-green-900);
 }
 
 @media (prefers-color-scheme: dark) {

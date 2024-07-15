@@ -97,6 +97,7 @@ export default {
 .btn-replay {
     margin-top: 9rem;
     height: 2.5rem;
+    color: var(--color-text-foreground)
 }
 
 @media screen and (max-width: 600px) {
