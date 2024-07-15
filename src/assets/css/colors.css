@@ -1,0 +1,26 @@
+:root {
+    --c-black: #121212;
+    --c-dark-700: #333333;
+    --c-white: #fcfcfc;
+
+    --c-red-900: #ff2727;
+    --c-green-900: #2bdd1b;
+}
+
+:root {
+    --color-background: var(--c-white);
+    --color-foreground: var(--c-black);
+    --color-text-background: var(--c-dark-700);
+    --color-text-foreground: var(--c-white);
+    --color-danger: var(--c-red-900);
+    --color-success: var(var(--c-green-900));
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: var(--c-black);
+        --color-foreground: var(--c-white);
+        --color-text-background: var(--c-white);
+        --color-text-foreground: var(--c-dark-700);
+    }
+}

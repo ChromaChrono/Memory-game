@@ -1,0 +1,13 @@
+button {
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    background: none;
+    background: var(--color-foreground);
+    border: 2px solid var(--color-text-foreground);
+}
+
+body {
+    color: var(--color-background);
+    font-family: sans-serif;
+}

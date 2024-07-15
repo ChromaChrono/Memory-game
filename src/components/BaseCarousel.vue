@@ -64,19 +64,28 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.carousel-screen {
+    height: 100vh;
+    width: 100vw;
+    background: var(--color-background);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
 .carousel {
     display: flex;
     padding: 1rem 3rem;
     top: 50%;
-    /* width: 100%; */
     overflow-x: scroll;
 }
 .carousels {
     width: 100vw;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 .carousel-card {
-    background: white;
+    background: var(--color-foreground);
     width: 21rem;
     height: 16rem;
     flex-grow: 0;
@@ -84,11 +93,12 @@ export default {
     display: grid;
     place-items: center;
     flex-shrink: 0;
+    text-align: center;
 }
 
 .carousel-word {
     font-size: 2rem;
-    color: black;
+    color: var(--color-text-foreground);
     min-height: 1rem;
     min-width: 70%;
 }
@@ -98,22 +108,14 @@ export default {
 .carousel-card:not(:first-child) {
     margin-left: 3rem;
 }
-.carousel-screen {
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-}
 .underline {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--color-text-foreground);
 }
 .btn-continue {
     position: absolute;
     top: 22rem;
     height: 2.5rem;
     width: 8rem;
-    /* left: 10vw; */
 }
 
 @media screen and (max-width: 600px) {

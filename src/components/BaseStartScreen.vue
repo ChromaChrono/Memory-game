@@ -59,20 +59,23 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    background: black;
+    background: var(--color-background);
     display: grid;
     place-items: center;
 }
 
 .setting-fields {
-    background: white;
+    background: var(--color-foreground);
     border-radius: 1rem;
     padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .setting-field {
     margin-bottom: 0.75rem;
-    color: black;
+    color: var(--color-black);
 }
 
 .setting-field > input {
@@ -80,13 +83,19 @@ export default {
     font-size: 1rem;
 }
 .danger {
-    color: red;
+    color: var(--color-danger);
     font-weight: bold;
     text-transform: uppercase;
 }
 
 button {
-    border: 1px solid black;
     margin-top: 1rem;
+    max-width: fit-content;
+    background: var(--color-text-foreground);
+    color: var(--color-text-background);
+}
+
+button:disabled {
+    opacity: 85%;
 }
 </style>

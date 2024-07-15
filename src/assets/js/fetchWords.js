@@ -1,14 +1,16 @@
+import words from "../words.json"
+
+const randomNumberGenerator = (max = 1489) => {
+return Math.floor(Math.random() * max)
+}
+
 export default async (num) => {
-    const ninjaApiKey = import.meta.env.VITE_NINJAAPIKEY;
-    const words = [];
-    for (let i = 0; i < num; i++) {
-        await fetch("https://api.api-ninjas.com/v1/randomword?type=noun", {
-            headers: { "X-Api-Key": ninjaApiKey },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                words.push(data.word[0]);
-            });
+    const newWordArray = []
+
+    for (let i = 0; i<num; i++) {
+        newWordArray.push(words.words[randomNumberGenerator()])
     }
-    return words;
-};
+
+    return newWordArray
+
+}

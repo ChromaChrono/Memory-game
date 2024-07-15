@@ -1,6 +1,6 @@
 <template>
     <div class="end-screen">
-        <h1>Results</h1>
+        <div class="screen-title">Results</div>
         <div class="flex">
             <div class="scorecard">
                 <div class="score-title">Correct Guesses</div>
@@ -35,23 +35,36 @@ export default {
 </script>
 
 <style scoped>
+.screen-title {
+    color: var(--color-text-background);
+    font-size: 4rem;
+    margin-top: 2rem;
+}
 .correct {
-    color: greenyellow;
+    color: var(--color-success);
 }
 .incorrect {
-    color: red;
+    color: var(--color-danger);
 }
 .end-screen {
     height: 100vh;
     width: 100vw;
+    background: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .scorecard {
-    background: white;
+    background: var(--color-foreground);
     height: 18rem;
     width: 15rem;
     border-radius: 1rem;
-    color: black;
+    color: var(--color-text-foreground);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
 }
 
 .score-title {
@@ -60,29 +73,29 @@ export default {
 }
 
 .score {
-    font-size: 4.5rem;
+    font-size: 4rem;
     margin-top: 2rem;
 }
 
 .list-of-words {
     font-size: 1.5rem;
-    background: white;
+    background: var(--color-foreground);
     width: 20rem;
     max-height: 40rem;
     overflow-y: scroll;
-    color: black;
     padding: 2rem;
     border-radius: 1rem;
 }
 .flex {
-    margin-top: 5%;
+    margin-top: 7%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
 }
 
 .btn-replay {
-    margin-top: 5rem;
+    margin-top: 9rem;
     height: 2.5rem;
 }
 
