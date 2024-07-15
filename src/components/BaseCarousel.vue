@@ -116,6 +116,7 @@ export default {
     top: 22rem;
     height: 2.5rem;
     width: 8rem;
+    color: var(--color-text-foreground);
 }
 
 @media screen and (max-width: 600px) {
@@ -144,6 +145,7 @@ export default {
         bottom: 5rem;
         left: 50%;
         transform: translate(-50%);
+        
     }
 }
 </style>
