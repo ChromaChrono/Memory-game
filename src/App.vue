@@ -1,27 +1,27 @@
 <script setup>
-import startScreen from "./components/BaseStartScreen.vue";
-import carousel from "./components/BaseCarousel.vue";
+import TheStartScreen from "./components/TheStartScreen.vue";
+import TheGameScreen from "./components/TheGameScreen.vue";
+import TheScoreScreen from "./components/TheScoreScreen.vue";
 import fetchWords from "./assets/js/fetchWords";
-import EndScreen from "./components/BaseEndScreen.vue";
 </script>
 
 <template>
-    <startScreen
+    <TheStartScreen
         v-if="gameState === 'starting'"
-        @values="handleStart($event)"
-    ></startScreen>
-    <carousel
+        @settings="handleStart($event)"
+    ></TheStartScreen>
+    <TheGameScreen
         v-if="gameState === 'started'"
-        :words="wordTable"
-        @guessedWords="handleGuesses($event)"
-    ></carousel>
-    <EndScreen
+        :wordList="wordTable.list"
+        @guesses="handleGuesses($event)"
+    ></TheGameScreen>
+    <TheScoreScreen
         v-if="gameState === 'ended'"
-        :words="wordTable"
+        :wordTable="wordTable"
         :totalWords="totalWords"
-        :correctGuesses="correctGuesses"
+        :finalScore="finalScore"
         @restart="handleRestart"
-    ></EndScreen>
+    ></TheScoreScreen>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
             gameState: "starting",
             wordTable: {},
             guessedWords: [],
-            correctGuesses: 0,
+            finalScore: 0,
             totalWords: 0,
         };
     },
@@ -45,25 +45,26 @@ export default {
             (this.gameState = "starting"),
                 (this.wordTable = {}),
                 (this.guessedWords = []),
-                (this.correctGuesses = 0),
+                (this.finalScore = 0),
                 (this.totalWords = 0);
         },
         handleGuesses(wordsArray) {
             wordsArray.forEach((e) => {
                 if (this.wordTable[e]) {
                     this.wordTable[e].correct = true;
-                    this.correctGuesses++;
+                    this.finalScore++;
                 }
             });
             this.guessedWords.forEach((e) => {
                 if (this.wordTable[e]) {
-                    this.correctGuesses++;
+                    this.finalScore++;
                 }
             });
             this.gameState = "ended";
         },
         arrayToWordTable(wordArray) {
             this.totalWords = wordArray.length;
+            this.wordTable.list = wordArray;
             wordArray.forEach((e) => {
                 this.wordTable[e] = {
                     isCorrect: false,
@@ -75,4 +76,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+body {
+    background: var(--color-background);
+}
+</style>

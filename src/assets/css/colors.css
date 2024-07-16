@@ -1,6 +1,7 @@
 :root {
     --c-black: #121212;
     --c-dark-700: #333333;
+    --c-dark-500: #7e7e7e;
     --c-white: #fcfcfc;
 
     --c-red-900: #ff2727;
@@ -14,6 +15,7 @@
     --color-text-foreground: var(--c-white);
     --color-danger: var(--c-red-900);
     --color-success: var(--c-green-900);
+    --color-disabled: var(--c-dark-500);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +25,12 @@
         --color-text-background: var(--c-white);
         --color-text-foreground: var(--c-dark-700);
     }
+}
+
+.danger-text {
+    color: var(--c-red-900);
+}
+
+.success-text {
+    color: var(--c-green-900);
 }
