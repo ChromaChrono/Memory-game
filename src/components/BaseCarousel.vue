@@ -1,10 +1,6 @@
 <template>
     <div class="carousel" ref="carousel">
-        <div
-            v-for="(word) in wordList"
-            :key="word.id"
-            class="carousel-card"
-        >
+        <div v-for="word in wordList" :key="word.id" class="carousel-card">
             <div
                 class="carousel-word"
                 :contentEditable="!isDisplayingWords"
