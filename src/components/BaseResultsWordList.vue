@@ -1,7 +1,7 @@
 <template>
     <div class="list-of-words">
         <div
-            v-for="(word, key) in wordTable"
+            v-for="(word, key) in wordTable.words"
             :key="word.id"
             class="word"
             :class="[word.correct ? 'success-text' : 'danger-text']"

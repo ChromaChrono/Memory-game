@@ -11,12 +11,12 @@ import fetchWords from "./assets/js/fetchWords";
         @settings="handleStart($event)"
     ></TheStartScreen>
     <TheGameScreen
-        v-if="gameState === 'started'"
+        v-else-if="gameState === 'started'"
         :wordList="wordTable.list"
         @guesses="handleGuesses($event)"
     ></TheGameScreen>
     <TheScoreScreen
-        v-if="gameState === 'ended'"
+        v-else-if="gameState === 'ended'"
         :wordTable="wordTable"
         :totalWords="totalWords"
         :finalScore="finalScore"
@@ -29,7 +29,10 @@ export default {
     data() {
         return {
             gameState: "starting",
-            wordTable: {},
+            wordTable: {
+                wordList: [],
+                words: {},
+            },
             guessedWords: [],
             finalScore: 0,
             totalWords: 0,
@@ -42,21 +45,20 @@ export default {
             this.gameState = "started";
         },
         handleRestart() {
-            (this.gameState = "starting"),
-                (this.wordTable = {}),
-                (this.guessedWords = []),
-                (this.finalScore = 0),
-                (this.totalWords = 0);
+            this.gameState = "starting";
+            this.wordTable = {
+                wordList: [],
+                words: {},
+            };
+            this.guessedWords = [];
+            this.finalScore = 0;
+            this.totalWords = 0;
         },
-        handleGuesses(wordsArray) {
-            wordsArray.forEach((e) => {
-                if (this.wordTable[e]) {
-                    this.wordTable[e].correct = true;
-                    this.finalScore++;
-                }
-            });
-            this.guessedWords.forEach((e) => {
-                if (this.wordTable[e]) {
+        handleGuesses(guessesArray) {
+            guessesArray.forEach((guess) => {
+                const transformedGuess = guess.toLowerCase().trim();
+                if (this.wordTable.words[transformedGuess]) {
+                    this.wordTable.words[transformedGuess].correct = true;
                     this.finalScore++;
                 }
             });
@@ -66,7 +68,7 @@ export default {
             this.totalWords = wordArray.length;
             this.wordTable.list = wordArray;
             wordArray.forEach((e) => {
-                this.wordTable[e] = {
+                this.wordTable.words[e] = {
                     isCorrect: false,
                     id: self.crypto.randomUUID(),
                 };

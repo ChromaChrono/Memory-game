@@ -44,8 +44,9 @@ export default {
         emitGuessedWords() {
             this.readGuessedWords();
             this.$emit("guessedWords", this.guessedWords);
+            this.guessedWords = [];
         },
-    },
+    }
 };
 </script>
 

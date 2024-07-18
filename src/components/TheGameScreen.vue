@@ -37,6 +37,7 @@ export default {
     methods: {
         handleContinue() {
             if (this.isDisplayingWords === true) {
+                this.guessedWordsList = [];
                 this.isDisplayingWords = false;
             } else {
                 this.$emit("guesses", this.guessedWordsList);
