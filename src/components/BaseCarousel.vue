@@ -46,7 +46,7 @@ export default {
             this.$emit("guessedWords", this.guessedWords);
             this.guessedWords = [];
         },
-    }
+    },
 };
 </script>
 

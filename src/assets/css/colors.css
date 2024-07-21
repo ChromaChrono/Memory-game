@@ -6,9 +6,11 @@
 
     --c-red-900: #ff2727;
     --c-green-900: #2bdd1b;
+    --c-blue-900: #0400ff;
 }
 
 :root {
+    --color-white: var(--c-white);
     --color-background: var(--c-white);
     --color-foreground: var(--c-black);
     --color-text-background: var(--c-dark-700);
@@ -16,6 +18,7 @@
     --color-danger: var(--c-red-900);
     --color-success: var(--c-green-900);
     --color-disabled: var(--c-dark-500);
+    --color-link: var(--c-blue-900);
 }
 
 @media (prefers-color-scheme: dark) {

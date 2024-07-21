@@ -2,7 +2,9 @@
 import TheStartScreen from "./components/TheStartScreen.vue";
 import TheGameScreen from "./components/TheGameScreen.vue";
 import TheScoreScreen from "./components/TheScoreScreen.vue";
+import { mapWritableState } from "pinia";
 import fetchWords from "./assets/js/fetchWords";
+import { auth } from "./includes/firebase";
 </script>
 
 <template>
@@ -25,6 +27,8 @@ import fetchWords from "./assets/js/fetchWords";
 </template>
 
 <script>
+import useAuthStore from "./stores/auth.js";
+
 export default {
     data() {
         return {
@@ -37,6 +41,14 @@ export default {
             finalScore: 0,
             totalWords: 0,
         };
+    },
+    computed: {
+        ...mapWritableState(useAuthStore, ["userLoggedIn"]),
+    },
+    created() {
+        if (auth.currentUser) {
+            this.userLoggedIn = true;
+        }
     },
     methods: {
         async handleStart(e) {

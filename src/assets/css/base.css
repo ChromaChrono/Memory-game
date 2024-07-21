@@ -2,3 +2,10 @@ body {
     color: var(--color-background);
     font-family: sans-serif;
 }
+
+.link {
+    font-weight: 500;
+    opacity: 0.9;
+    color: var(--color-link);
+    text-decoration: underline;
+}

@@ -1,9 +1,12 @@
 <script setup>
 import BaseButton from "./BaseButton.vue";
+import BaseContentBox from "./BaseContentBox.vue";
+import { auth } from "../includes/firebase";
 </script>
 
 <template>
-    <div class="setting-fields">
+    <BaseContentBox>
+        <div class="welcome-message">Welcome {{ loggedInUser }}</div>
         <div class="setting-field">
             <label for="time">Time (seconds):</label>
             <br />
@@ -36,7 +39,9 @@ import BaseButton from "./BaseButton.vue";
         >
             {{ loadingGame ? "loading" : "start" }}
         </BaseButton>
-    </div>
+        <a href="#signIn" @click="handleNavToSignIn">Log into account?</a>
+        <a href="#signUp" @click="handleNavToSignUp">New? Make an account?</a>
+    </BaseContentBox>
 </template>
 
 <script>
@@ -48,7 +53,13 @@ export default {
                 wordCount: 10,
             },
             loadingGame: false,
+            loggedInUser: "",
         };
+    },
+    created() {
+        if (auth.currentUser) {
+            this.loggedInUser = auth.currentUser.displayName;
+        }
     },
     methods: {
         startGame() {
@@ -57,6 +68,12 @@ export default {
             }
             this.loadingGame = true;
             this.$emit("settingValues", this.settings);
+        },
+        handleNavToSignIn() {
+            this.$emit("navToSignIn", true);
+        },
+        handleNavToSignUp() {
+            this.$emit("navToSignUp", true);
         },
     },
 };

@@ -1,20 +1,48 @@
 <script setup>
 import BaseSettingField from "./BaseSettingField.vue";
+import BaseSignUpForm from "./BaseSignUpForm.vue";
+import BaseSignInForm from "./BaseSignInForm.vue";
 </script>
 
 <template>
     <div class="settings-container">
         <BaseSettingField
+            v-if="!login"
             @settingValues="handleSettingValues($event)"
+            @navToSignIn="handleNavToSignIn"
+            @navToSignUp="handleNavToSignUp"
         ></BaseSettingField>
+        <BaseSignInForm
+            v-if="login === 'signIn'"
+            @navToSignUp="handleNavToSignUp"
+            @navToStartScreen="handleNavToStartScreen"
+        ></BaseSignInForm>
+        <BaseSignUpForm
+            v-if="login === 'signUp'"
+            @navToStartScreen="handleNavToStartScreen"
+        ></BaseSignUpForm>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            login: false,
+        };
+    },
     methods: {
         handleSettingValues(settings) {
             this.$emit("settings", settings);
+        },
+        handleNavToSignIn() {
+            this.login = "signIn";
+        },
+        handleNavToSignUp() {
+            this.login = "signUp";
+        },
+        handleNavToStartScreen() {
+            this.login = false;
         },
     },
 };
