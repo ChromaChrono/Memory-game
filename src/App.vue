@@ -2,9 +2,11 @@
 import TheStartScreen from "./components/TheStartScreen.vue";
 import TheGameScreen from "./components/TheGameScreen.vue";
 import TheScoreScreen from "./components/TheScoreScreen.vue";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapActions } from "pinia";
+import useUserActionsStore from "./stores/userActions.js";
 import fetchWords from "./assets/js/fetchWords";
 import { auth } from "./includes/firebase";
+import highestScorePerDay from "./assets/js/highestScorePerDay.js";
 </script>
 
 <template>
@@ -15,13 +17,15 @@ import { auth } from "./includes/firebase";
     <TheGameScreen
         v-else-if="gameState === 'started'"
         :wordList="wordTable.list"
-        @guesses="handleGuesses($event)"
+        @guesses="handleGameResults($event)"
     ></TheGameScreen>
     <TheScoreScreen
         v-else-if="gameState === 'ended'"
         :wordTable="wordTable"
         :totalWords="totalWords"
         :finalScore="finalScore"
+        :savingError="savingError"
+        :dailyHighScores="dailyHighScores"
         @restart="handleRestart"
     ></TheScoreScreen>
 </template>
@@ -40,6 +44,8 @@ export default {
             guessedWords: [],
             finalScore: 0,
             totalWords: 0,
+            dailyHighScores: [],
+            savingError: false,
         };
     },
     computed: {
@@ -51,6 +57,8 @@ export default {
         }
     },
     methods: {
+        ...mapActions(useUserActionsStore, ["saveNewScore"]),
+        ...mapActions(useUserActionsStore, ["getUserScores"]),
         async handleStart(e) {
             const words = await fetchWords(e.wordCount);
             this.arrayToWordTable(words);
@@ -66,6 +74,26 @@ export default {
             this.finalScore = 0;
             this.totalWords = 0;
         },
+        async saveScoreToUserAccount() {
+            try {
+                await this.saveNewScore(this.finalScore, this.totalWords);
+            } catch (err) {
+                this.savingError = true;
+                console.log(err);
+            }
+            return;
+        },
+        async getAllUserScores() {
+            let scores;
+            try {
+                scores = await this.getUserScores();
+            } catch (err) {
+                this.scoreRetrievalError = true;
+                console.log(err);
+            }
+            this.dailyHighScores = highestScorePerDay(scores);
+            return;
+        },
         handleGuesses(guessesArray) {
             guessesArray.forEach((guess) => {
                 const transformedGuess = guess.toLowerCase().trim();
@@ -75,6 +103,11 @@ export default {
                 }
             });
             this.gameState = "ended";
+        },
+        async handleGameResults(guesses) {
+            this.handleGuesses(guesses);
+            await this.saveScoreToUserAccount();
+            await this.getAllUserScores();
         },
         arrayToWordTable(wordArray) {
             this.totalWords = wordArray.length;

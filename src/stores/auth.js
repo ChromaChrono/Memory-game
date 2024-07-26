@@ -12,7 +12,11 @@ export default defineStore("auth", {
     state: () => ({
         userLoggedIn: false,
     }),
-    getters: {},
+    getters: {
+        isUserLoggedIn() {
+            return this.userLoggedIn;
+        },
+    },
     actions: {
         async register(email, password, username) {
             const auth = await getAuth();
@@ -24,6 +28,7 @@ export default defineStore("auth", {
             await setDoc(doc(db, "users", userCred.user.uid), {
                 username: username,
                 email: email,
+                scores: [],
             });
             updateProfile(auth.currentUser, {
                 displayName: username,

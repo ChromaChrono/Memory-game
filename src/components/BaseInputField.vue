@@ -32,7 +32,7 @@ export default {
                 return {
                     isInvalid: false,
                     text: "",
-                }
+                };
             },
             type: Object,
             required: false,

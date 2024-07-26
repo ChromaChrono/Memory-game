@@ -2,10 +2,17 @@
 import BaseScoreCard from "./BaseScoreCard.vue";
 import BaseResultsWordList from "./BaseResultsWordList.vue";
 import BaseButton from "./BaseButton.vue";
+import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
+import BaseScoreHistory from "./BaseScoreHistory.vue";
 </script>
 
 <template>
     <div class="container">
+        <BaseAuthStatusBox
+            v-if="savingError"
+            :message="`We're sorry, but your score couldn't be saved due to an error on the server`"
+            :messageType="'error'"
+        ></BaseAuthStatusBox>
         <div class="flex">
             <BaseScoreCard
                 :totalWords="totalWords"
@@ -18,6 +25,10 @@ import BaseButton from "./BaseButton.vue";
             :btnText="'Restart Game'"
             @click="handleRestart"
         ></BaseButton>
+        <BaseScoreHistory
+            class="history"
+            :dailyHighScores="dailyHighScores"
+        ></BaseScoreHistory>
     </div>
 </template>
 
@@ -33,6 +44,14 @@ export default {
             required: true,
         },
         wordTable: {
+            type: Object,
+            required: true,
+        },
+        savingError: {
+            type: Boolean,
+            required: false,
+        },
+        dailyHighScores: {
             type: Object,
             required: true,
         },
@@ -60,6 +79,9 @@ export default {
     width: 100%;
 }
 .button {
+    margin-top: 3rem;
+}
+.history {
     margin-top: 3rem;
 }
 
