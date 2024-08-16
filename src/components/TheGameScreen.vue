@@ -1,22 +1,15 @@
 <script setup>
 import BaseCarousel from "./BaseCarousel.vue";
-import BaseButton from "./BaseButton.vue";
 </script>
 
 <template>
     <div class="container">
         <div class="carousel-container">
             <BaseCarousel
-                :isDisplayingWords="isDisplayingWords"
                 :wordList="wordList"
                 @guessedWords="saveGuessedWords($event)"
             ></BaseCarousel>
         </div>
-        <BaseButton
-            :btnText="'Continue'"
-            :isColorInverted="true"
-            @click="handleContinue"
-        ></BaseButton>
     </div>
 </template>
 
@@ -30,7 +23,6 @@ export default {
     },
     data() {
         return {
-            isDisplayingWords: true,
             guessedWordsList: [],
         };
     },
@@ -45,6 +37,7 @@ export default {
         },
         saveGuessedWords(guessedWordsArray) {
             this.guessedWordsList = guessedWordsArray;
+            this.handleContinue();
         },
     },
 };

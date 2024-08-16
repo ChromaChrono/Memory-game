@@ -11,6 +11,7 @@ import { auth } from "../includes/firebase";
             <label for="time">Time (seconds):</label>
             <br />
             <input
+                class="input-time"
                 type="number"
                 id="time"
                 value="60"
@@ -26,6 +27,7 @@ import { auth } from "../includes/firebase";
             >
             <br />
             <input
+                class="input-word-count"
                 type="number"
                 id="wordCount"
                 value="10"

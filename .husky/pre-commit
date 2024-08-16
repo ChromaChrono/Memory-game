@@ -1,2 +1,3 @@
 npm run prettier
+npm run test:no-watch
 npm run eslint

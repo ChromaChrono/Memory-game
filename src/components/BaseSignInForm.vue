@@ -34,6 +34,7 @@ import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
                 <BaseButton
                     :disabled="login_in_submission"
                     :btnText="'Sign in'"
+                    @click="submit"
                 ></BaseButton>
                 <BaseAuthStatusBox
                     v-if="statusMessage"
@@ -58,6 +59,9 @@ export default {
             login_in_submission: false,
             login_error: false,
             statusMessage: "",
+            successMessage: "Success! You are logged in. Redirecting. . .",
+            errorMessage:
+                "There appears to be a problem, please make sure your email and password are correct or try again later",
         };
     },
     methods: {
@@ -73,16 +77,14 @@ export default {
             this.login_in_submission = true;
             try {
                 await this.signIn(this.email, this.password);
-                this.statusMessage =
-                    "Success! You are logged in. Redirecting. . . ";
-                setTimeout(() => {
-                    this.handleNavToStartScreen();
-                }, 2500);
+                this.statusMessage = this.successMessage;
+                // setTimeout(() => {
+                //     this.handleNavToStartScreen();
+                // }, 2500);
             } catch {
                 this.login_error = true;
                 this.login_in_submission = false;
-                this.statusMessage =
-                    "There appears to be a problem, please make sure your email and password are correct or try again later";
+                this.statusMessage = this.errorMessage;
             }
         },
     },

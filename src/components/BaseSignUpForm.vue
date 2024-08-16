@@ -75,6 +75,9 @@ export default {
             formSubmitting: false,
             login_error: false,
             statusMessage: "",
+            submissionSuccessMessage: "Success! Thank you for signing up.",
+            submissionErrorMessage:
+                "There appears to be a problem, please try again later",
         };
     },
     methods: {
@@ -116,7 +119,7 @@ export default {
                         this.password,
                         this.username,
                     );
-                    this.statusMessage = "Success! Thank you for signing up.";
+                    this.statusMessage = this.submissionSuccessMessage;
                     setTimeout(() => {
                         this.handleNavToStartScreen();
                     }, 2500);
@@ -124,8 +127,7 @@ export default {
                     console.log(err);
                     this.formSubmitting = false;
                     this.login_error = true;
-                    this.statusMessage =
-                        "There appears to be a problem, please try again later";
+                    this.statusMessage = this.submissionErrorMessage;
                 }
             } else {
                 this.formSubmitting = false;
