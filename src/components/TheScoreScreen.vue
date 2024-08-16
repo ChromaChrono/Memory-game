@@ -10,7 +10,7 @@ import BaseScoreHistory from "./BaseScoreHistory.vue";
     <div class="container">
         <BaseAuthStatusBox
             v-if="savingError"
-            :message="`We're sorry, but your score couldn't be saved due to an error on the server`"
+            :message="statusBoxErrorMessage"
             :messageType="'error'"
         ></BaseAuthStatusBox>
         <div class="flex">
@@ -55,6 +55,11 @@ export default {
             type: Object,
             required: true,
         },
+    },
+    data() {
+        return {
+            statusBoxErrorMessage: `We're sorry, but your score couldn't be saved due to an error on the server`,
+        };
     },
     methods: {
         handleRestart() {

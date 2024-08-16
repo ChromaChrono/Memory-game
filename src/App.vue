@@ -114,7 +114,7 @@ export default {
             this.wordTable.list = wordArray;
             wordArray.forEach((e) => {
                 this.wordTable.words[e] = {
-                    isCorrect: false,
+                    correct: false,
                     id: self.crypto.randomUUID(),
                 };
             });
