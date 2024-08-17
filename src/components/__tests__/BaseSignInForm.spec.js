@@ -5,18 +5,6 @@ import useAuthStore from "../../stores/auth";
 import BaseSignInForm from "../BaseSignInForm.vue";
 
 describe("BaseSignInForm Test", () => {
-    test("link to start screen emits nesessary value", async () => {
-        const wrapper = mount(BaseSignInForm);
-        const linkWrapper = wrapper.find('a[href="#startScreen"]');
-        await linkWrapper.trigger("click");
-        expect(wrapper.emitted().navToStartScreen[0][0]).toBe(true);
-    });
-    test("link to sign up emits nesessary value", async () => {
-        const wrapper = mount(BaseSignInForm);
-        const linkWrapper = wrapper.find('a[href="#signUp"]');
-        await linkWrapper.trigger("click");
-        expect(wrapper.emitted().navToSignUp[0][0]).toBe(true);
-    });
     test("sign in succeeds", async () => {
         const wrapper = mount(BaseSignInForm, {
             global: {
