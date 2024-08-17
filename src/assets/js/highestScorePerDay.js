@@ -33,7 +33,6 @@ export default (scores) => {
             console.log(err);
         }
     }
-    console.log(highestScore);
     return {
         dailyHighScores: highestScoresArray,
         highScore: highestScore,

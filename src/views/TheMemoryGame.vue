@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         ...mapActions(useUserActionsStore, ["saveNewScore"]),
-        ...mapActions(useUserActionsStore, ["getUserScores"]),
+
         async handleStart(e) {
             const words = await fetchWords(e.wordCount);
             this.arrayToWordTable(words);
@@ -83,17 +83,7 @@ export default {
             }
             return;
         },
-        async getAllUserScores() {
-            let scores;
-            try {
-                scores = await this.getUserScores();
-            } catch (err) {
-                this.scoreRetrievalError = true;
-                console.log(err);
-            }
-            this.dailyHighScores = highestScorePerDay(scores);
-            return;
-        },
+
         handleGuesses(guessesArray) {
             guessesArray.forEach((guess) => {
                 const transformedGuess = guess.toLowerCase().trim();
@@ -107,7 +97,6 @@ export default {
         async handleGameResults(guesses) {
             this.handleGuesses(guesses);
             await this.saveScoreToUserAccount();
-            await this.getAllUserScores();
         },
         arrayToWordTable(wordArray) {
             this.totalWords = wordArray.length;
