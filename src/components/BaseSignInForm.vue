@@ -17,8 +17,8 @@ import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
                 :errorMessage="'There appears to be an error, please try again later.'"
             >
                 <template #link-top>
-                    <a href="#startScreen" @click="handleNavToStartScreen"
-                        >Back to start</a
+                    <router-link :to="{ name: 'memory-game' }"
+                        >Back to start</router-link
                     >
                 </template>
                 <BaseInputField
@@ -42,8 +42,8 @@ import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
                     :statusMessage="statusMessage"
                     :message="statusMessage"
                 ></BaseAuthStatusBox>
-                <a href="#signUp" class="link" @click="handleNavToSignUp"
-                    >Don't have an account?</a
+                <router-link :to="{ name: 'sign-up' }" class="link"
+                    >Don't have an account?</router-link
                 >
             </BaseFormBox>
         </form>

@@ -16,8 +16,8 @@ import { mapActions } from "pinia";
         <form @submit.prevent="submit" novalidate="true">
             <BaseFormBox :formSubmissionError="login_error" :title="'sign up'">
                 <template #link-top>
-                    <a href="#startScreen" @click="handleNavToStartScreen"
-                        >Back to start</a
+                    <router-link :to="{ name: 'memory-game' }"
+                        >Back to start</router-link
                     >
                 </template>
                 <BaseInputField

@@ -41,8 +41,10 @@ import { auth } from "../includes/firebase";
         >
             {{ loadingGame ? "loading" : "start" }}
         </BaseButton>
-        <a href="#signIn" @click="handleNavToSignIn">Log into account?</a>
-        <a href="#signUp" @click="handleNavToSignUp">New? Make an account?</a>
+        <router-link :to="{ name: 'sign-in' }">Log into accound?</router-link>
+        <router-link :to="{ name: 'sign-up' }"
+            >New? Make an account?</router-link
+        >
     </BaseContentBox>
 </template>
 

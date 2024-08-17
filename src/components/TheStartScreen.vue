@@ -9,8 +9,6 @@ import BaseSignInForm from "./BaseSignInForm.vue";
         <BaseSettingField
             v-if="!login"
             @settingValues="handleSettingValues($event)"
-            @navToSignIn="handleNavToSignIn"
-            @navToSignUp="handleNavToSignUp"
         ></BaseSettingField>
         <BaseSignInForm
             v-if="login === 'signIn'"
@@ -34,12 +32,6 @@ export default {
     methods: {
         handleSettingValues(settings) {
             this.$emit("settings", settings);
-        },
-        handleNavToSignIn() {
-            this.login = "signIn";
-        },
-        handleNavToSignUp() {
-            this.login = "signUp";
         },
         handleNavToStartScreen() {
             this.login = false;
