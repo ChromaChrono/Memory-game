@@ -12,6 +12,7 @@
         "build": "vite build",
         "preview": "vite preview",
         "prettier": "prettier --write .",
+        "prettier:test": "prettier .",
         "eslint": "eslint .",
         "prepare": "husky"
     },
