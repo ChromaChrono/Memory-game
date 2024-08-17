@@ -6,7 +6,6 @@ import { mapWritableState, mapActions } from "pinia";
 import useUserActionsStore from "../stores/userActions.js";
 import fetchWords from "../assets/js/fetchWords";
 import { auth } from "../includes/firebase";
-import highestScorePerDay from "../assets/js/highestScorePerDay.js";
 </script>
 
 <template>
