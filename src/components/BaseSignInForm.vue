@@ -5,6 +5,7 @@ import BaseFormBox from "./BaseFormBox.vue";
 import { mapActions } from "pinia";
 import useAuthStore from "../stores/auth";
 import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
+import router from "../router/index";
 </script>
 
 <template>
@@ -70,7 +71,7 @@ export default {
             this.$emit("navToSignUp", true);
         },
         handleNavToStartScreen() {
-            this.$emit("navToStartScreen", true);
+            router.push("/");
         },
         async submit() {
             this.formSubmissionError = false;
@@ -78,9 +79,9 @@ export default {
             try {
                 await this.signIn(this.email, this.password);
                 this.statusMessage = this.successMessage;
-                // setTimeout(() => {
-                //     this.handleNavToStartScreen();
-                // }, 2500);
+                setTimeout(() => {
+                    this.handleNavToStartScreen();
+                }, 2500);
             } catch {
                 this.login_error = true;
                 this.login_in_submission = false;

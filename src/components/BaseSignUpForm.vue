@@ -5,6 +5,7 @@ import BaseFormBox from "./BaseFormBox.vue";
 import isPasswordValid from "../assets/js/isPasswordValid";
 import isEmailValid from "../assets/js/isEmailValid";
 import BaseAuthStatusBox from "./BaseAuthStatusBox.vue";
+import router from "../router/index.js";
 
 import useAuthStore from "../stores/auth.js";
 import { mapActions } from "pinia";
@@ -85,7 +86,7 @@ export default {
             createUser: "register",
         }),
         handleNavToStartScreen() {
-            this.$emit("navToStartScreen", true);
+            router.push("/");
         },
         handleValidation() {
             if (!isPasswordValid(this.password)) {
